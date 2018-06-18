@@ -28,11 +28,19 @@
 		ctx.drawImage(img, 0, 0);
 	}
 
+	function onImagesLoaded(imgs) {
+		drawImage(imgs[0]);
+
+		if (!isFontAvailable("Helvetica")) {
+			alert("Helvetica font not detected. Please make sure Helvetica is installed!");
+		}
+	}
+
 	function onLoad() {
 		Promise.all([
 			imgLoad("img/lambda-yt-bg-red.jpg"),
 		]).then((imgs) => {
-			drawImage(imgs[0]);
+			onImagesLoaded(imgs);
 		});
 	}
 
