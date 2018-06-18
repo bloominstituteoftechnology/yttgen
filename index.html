@@ -4,6 +4,7 @@
 	<head>
 		<title>Lambda School YouTube thumbnail generator</title>
 		<link rel="stylesheet" type="text/css" href="yttgen.css" />
+		<script src="yttgen.js"></script>
 	</head>
 
 	<body>
@@ -12,12 +13,15 @@
 		</div>
 
 		<div id="mainpage">
-			<input type="text" placeholder="Description Line 1"><br>
-			<input type="text" placeholder="Description Line 2"><br>
-			<input type="text" placeholder="Instructor Name"><br>
-			<input type="text" placeholder="Date"><br>
+			<input type="text" placeholder="Description Line 1">
+			<input type="text" placeholder="Description Line 2">
+			<input type="text" placeholder="Instructor Name">
+			<input type="text" placeholder="Date">
+
+			<canvas id="canvas"></canvas>
 
 			<button id="download-button">Download</button>
 		</div>
+
 	</body>
 </html>

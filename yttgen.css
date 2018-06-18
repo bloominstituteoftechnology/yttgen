@@ -1,3 +1,13 @@
 .hidden {
 	display: none;
 }
+
+input[type="text"], button {
+	display: block;
+}
+
+#canvas {
+	display: block;
+	width: 100%;
+	max-width: 580px;
+}
