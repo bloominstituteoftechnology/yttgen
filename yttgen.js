@@ -3,6 +3,21 @@
 
 	const curImg = 0;
 
+	const month = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December"
+	];
+
 	/**
 	 * Helper function for querySelector
 	 */
@@ -49,6 +64,16 @@
 
 		ctx.fillText(desc1, canvas.width / 2, 550);
 		ctx.fillText(desc2, canvas.width / 2, 703);
+
+		// Draw the instructor and date
+		const instname = qs('#instname').value;
+		const date = qs('#date').value;
+
+		const namedate = `${instname} \u2022 ${date}`
+
+		ctx.font = '80px Helvetica,monospace';
+
+		ctx.fillText(namedate, canvas.width / 2, 824);
 	}
 
 	/**
@@ -104,6 +129,11 @@
 				qs('#' + id).value = val;
 			}
 		}
+
+		// Set the date field
+		const d = new Date();
+		const dateStr = `${month[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+		qs('#date').value = dateStr;
 	}
 
 	/**
