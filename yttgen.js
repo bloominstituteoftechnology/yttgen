@@ -93,12 +93,32 @@
 		]).then((imgs) => {
 			onImagesLoaded(imgs);
 		});
+
+		// Restore all text fields from local storage
+		const ls = window.localStorage;
+
+		for (let id of ["desc1", "desc2", "instname"]) {
+			const val = ls.getItem(id);
+
+			if (val) {
+				qs('#' + id).value = val;
+			}
+		}
 	}
 
 	/**
 	 * Main
 	 */
 	window.addEventListener('DOMContentLoaded', onLoad);
+
+	window.addEventListener("beforeunload", function (event) {
+		const ls = window.localStorage;
+
+		// Save all text fields to local storage
+		for (let id of ["desc1", "desc2", "instname"]) {
+			ls.setItem(id, qs('#' + id).value);
+		}
+	});
 
 }());
 
