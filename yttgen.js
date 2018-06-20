@@ -60,7 +60,7 @@
 		const desc1 = qs('#desc1').value;
 		const desc2 = qs('#desc2').value;
 
-		ctx.font = 'bold 120px Helvetica,monospace';
+		ctx.font = 'bold 120px Helvetica,sans-serif';
 
 		ctx.fillText(desc1, canvas.width / 2, 550);
 		ctx.fillText(desc2, canvas.width / 2, 703);
@@ -71,7 +71,7 @@
 
 		const namedate = `${instname} \u2022 ${date}`
 
-		ctx.font = '80px Helvetica,monospace';
+		ctx.font = '80px Helvetica,sans-serif';
 
 		ctx.fillText(namedate, canvas.width / 2, 824);
 	}
