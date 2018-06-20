@@ -13,6 +13,11 @@ input[type="text"], button {
 	max-width: 580px;
 }
 
+select {
+	display: block;
+	margin-bottom: 10px;
+}
+
 #canvas {
 	display: block;
 	margin-bottom: 10px;

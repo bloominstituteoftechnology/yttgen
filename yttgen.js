@@ -1,8 +1,6 @@
 (function() {
 	"use strict";
 
-	const curImg = 0;
-
 	const month = [
 		"January",
 		"February",
@@ -17,6 +15,34 @@
 		"November",
 		"December"
 	];
+
+	// Map image URLs to theme keys
+	const imgURL_theme = {
+		"img/lambda-yt-bg-black.jpg": "Black",
+		"img/lambda-yt-bg-teal.jpg": "Teal",
+		"img/lambda-yt-bg-red.jpg": "Red",
+		"img/lambda-yt-bg-white.jpg": "White",
+	};
+
+	// List of themes
+	const theme = {
+		"Black": {
+			"img": null,
+			"fgcolor": "white"
+		},
+		"Teal": {
+			"img": null,
+			"fgcolor": "white"
+		},
+		"Red": {
+			"img": null,
+			"fgcolor": "white"
+		},
+		"White": {
+			"img": null,
+			"fgcolor": "black"
+		}
+	};
 
 	/**
 	 * Helper function for querySelector
@@ -43,14 +69,18 @@
 	/**
 	 * Draw the specified image on the canvas
 	 */
-	function drawImage(img) {
+	function drawImage() {
 		const canvas = qs('#canvas');
+
+		const curTheme = qs('#theme').value;
+
+		const img = theme[curTheme].img;
 
 		canvas.width = img.width;
 		canvas.height = img.height;
 
 		const ctx = canvas.getContext('2d');
-		ctx.fillStyle = 'white';
+		ctx.fillStyle = theme[curTheme].fgcolor;
 		ctx.textAlign = 'center';
 
 		// Draw the background
@@ -92,7 +122,15 @@
 	 * Called once all the images have loaded
 	 */
 	function onImagesLoaded(imgs) {
-		drawImage(imgs[curImg]);
+		// Fill in the theme img mapping
+		for (let i of imgs) {
+			const url = i.getAttribute('src');
+			const themeName = imgURL_theme[url];
+
+			theme[themeName].img = i;
+		}
+
+		drawImage();
 
 		if (!isFontAvailable("Helvetica")) {
 			alert("Helvetica font not detected. Please make sure Helvetica is installed!");
@@ -105,24 +143,31 @@
 		for (let id of ["#desc1", "#desc2", "#instname", "#date"]) {
 			const elem = qs(id);
 
-			elem.addEventListener('keyup', () => drawImage(imgs[curImg]));
+			elem.addEventListener('keyup', drawImage);
 		}
+
+		// Add listener to select change
+		qs('#theme').addEventListener('change', drawImage);
 	}
 
 	/**
 	 * Called when the DOM is ready
 	 */
 	function onLoad() {
-		Promise.all([
-			imgLoad("img/lambda-yt-bg-red.jpg"),
-		]).then((imgs) => {
+		const promises = [];
+
+		for (let i in imgURL_theme) {
+			promises.push(imgLoad(i));
+		}
+
+		Promise.all(promises).then((imgs) => {
 			onImagesLoaded(imgs);
 		});
 
 		// Restore all text fields from local storage
 		const ls = window.localStorage;
 
-		for (let id of ["desc1", "desc2", "instname"]) {
+		for (let id of ["desc1", "desc2", "instname", "theme"]) {
 			const val = ls.getItem(id);
 
 			if (val) {
@@ -145,7 +190,7 @@
 		const ls = window.localStorage;
 
 		// Save all text fields to local storage
-		for (let id of ["desc1", "desc2", "instname"]) {
+		for (let id of ["desc1", "desc2", "instname", "theme"]) {
 			ls.setItem(id, qs('#' + id).value);
 		}
 	});
