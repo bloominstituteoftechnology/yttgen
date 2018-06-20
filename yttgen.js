@@ -1,10 +1,16 @@
 (function() {
 	"use strict";
 
+	/**
+	 * Helper function for querySelector
+	 */
 	function qs(s) {
 		return document.querySelector(s);
 	}
 
+	/**
+	 * Load an image, promisified
+	 */
 	function imgLoad(imageURL) {
 		return new Promise((resolve, reject) => {
 			let img = document.createElement('img');
@@ -17,6 +23,9 @@
 		});
 	}
 
+	/**
+	 * Draw the specified image on the canvas
+	 */
 	function drawImage(img) {
 		const canvas = qs('#canvas');
 
@@ -28,6 +37,9 @@
 		ctx.drawImage(img, 0, 0);
 	}
 
+	/**
+	 * Handle download button click
+	 */
 	function onDownloadClick() {
 		const aTag = this;
 		const canvas = qs('#canvas');
@@ -37,6 +49,9 @@
 		aTag.download = 'ytbg.png';
 	}
 
+	/**
+	 * Called once all the images have loaded
+	 */
 	function onImagesLoaded(imgs) {
 		drawImage(imgs[0]);
 
@@ -47,6 +62,9 @@
 		qs('#download').addEventListener('click', onDownloadClick);
 	}
 
+	/**
+	 * Called when the DOM is ready
+	 */
 	function onLoad() {
 		Promise.all([
 			imgLoad("img/lambda-yt-bg-red.jpg"),
@@ -55,6 +73,9 @@
 		});
 	}
 
+	/**
+	 * Main
+	 */
 	window.addEventListener('DOMContentLoaded', onLoad);
 
 }());
