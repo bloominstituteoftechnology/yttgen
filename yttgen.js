@@ -60,10 +60,10 @@
 		const desc1 = qs('#desc1').value;
 		const desc2 = qs('#desc2').value;
 
-		ctx.font = 'bold 120px Helvetica,sans-serif';
+		ctx.font = 'bold 122px Helvetica,sans-serif';
 
-		ctx.fillText(desc1, canvas.width / 2, 550);
-		ctx.fillText(desc2, canvas.width / 2, 703);
+		ctx.fillText(desc1, canvas.width / 2, 548);
+		ctx.fillText(desc2, canvas.width / 2, 701);
 
 		// Draw the instructor and date
 		const instname = qs('#instname').value;
@@ -71,9 +71,9 @@
 
 		const namedate = `${instname} \u2022 ${date}`
 
-		ctx.font = '80px Helvetica,sans-serif';
+		ctx.font = '82px Helvetica,sans-serif';
 
-		ctx.fillText(namedate, canvas.width / 2, 824);
+		ctx.fillText(namedate, canvas.width / 2, 822);
 	}
 
 	/**
