@@ -115,7 +115,15 @@
 
 		aTag.href = canvas.toDataURL('image/png');
 		//aTag.href = canvas.toDataURL('image/jpeg', 1.0); // 1.0 == max quality
-		aTag.download = 'ytbg.png';
+
+		const filenameInput = qs('#filename');
+		let filename = filenameInput.value;
+
+		if (filename === '') {
+			filename = filenameInput.getAttribute('placeholder');
+		}
+
+		aTag.download = filename;
 	}
 
 	/**
@@ -167,7 +175,7 @@
 		// Restore all text fields from local storage
 		const ls = window.localStorage;
 
-		for (let id of ["desc1", "desc2", "instname", "theme"]) {
+  		for (let id of ["desc1", "desc2", "instname", "theme", "filename"]) {
 			const val = ls.getItem(id);
 
 			if (val) {
@@ -190,7 +198,7 @@
 		const ls = window.localStorage;
 
 		// Save all text fields to local storage
-		for (let id of ["desc1", "desc2", "instname", "theme"]) {
+		for (let id of ["desc1", "desc2", "instname", "theme", "filename"]) {
 			ls.setItem(id, qs('#' + id).value);
 		}
 	});

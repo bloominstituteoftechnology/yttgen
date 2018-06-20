@@ -6,7 +6,7 @@ body {
 	display: none;
 }
 
-input[type="text"], button {
+.blockinput {
 	display: block;
 	margin-bottom: 10px;
 	width: 100%;
