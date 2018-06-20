@@ -92,7 +92,9 @@
 
 		ctx.font = 'bold 122px Helvetica,sans-serif';
 
-		ctx.fillText(desc1, canvas.width / 2, 548);
+		let desc1Y = desc2 === ''? 610: 548;
+
+		ctx.fillText(desc1, canvas.width / 2, desc1Y);
 		ctx.fillText(desc2, canvas.width / 2, 701);
 
 		// Draw the instructor and date
