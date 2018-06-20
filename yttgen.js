@@ -142,6 +142,12 @@
 
 		drawImage();
 
+		// Show the main page, hide loading page
+		qs('#mainpage').classList.remove('hidden');
+		qs('#loading').classList.add('hidden');
+
+		// Detect Helvetica
+
 		if (!isFontAvailable("Helvetica")) {
 			alert("Helvetica font not detected. Please make sure Helvetica is installed!");
 		}
