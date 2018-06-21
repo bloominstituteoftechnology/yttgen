@@ -24,3 +24,11 @@ select {
 	width: 100%;
 	max-width: 580px;
 }
+
+#autogenui {
+	margin-bottom: 10px;
+}
+
+#filename {
+	width: 400px;
+}

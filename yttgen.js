@@ -67,6 +67,25 @@
 	}
 
 	/**
+	 * Check to see if we need to update the autogen filename
+	 */
+	function autoGenFilename() {
+		if (qs('#autogen').checked) {
+			let filename = qs('#desc1').value;
+
+			// Normalize filename
+			filename = filename.toLowerCase();
+			filename = filename.trim();
+			filename = filename.replace(/-/g, '');
+			filename = filename.replace(/\s/g, '-');
+			filename = filename.replace(/[^-a-z0-9]/gi, '');
+			filename = filename.replace(/-+/g, '-');
+
+			qs('#filename').value = filename + '.png';
+		}
+	}
+
+	/**
 	 * Draw the specified image on the canvas
 	 */
 	function drawImage() {
@@ -162,8 +181,14 @@
 			elem.addEventListener('keyup', drawImage);
 		}
 
+		// See if we have to update the filename
+		qs('#desc1').addEventListener('keyup', autoGenFilename);
+
 		// Add listener to select change
 		qs('#theme').addEventListener('change', drawImage);
+
+		// Add listener to select change
+		qs('#autogen').addEventListener('change', autoGenFilename);
 	}
 
 	/**
@@ -191,10 +216,14 @@
 			}
 		}
 
+		qs('#autogen').checked = (ls.getItem("autogen") === 'true');
+
 		// Set the date field
 		const d = new Date();
 		const dateStr = `${month[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 		qs('#date').value = dateStr;
+
+		autoGenFilename();
 	}
 
 	/**
@@ -209,6 +238,9 @@
 		for (let id of ["desc1", "desc2", "instname", "theme", "filename"]) {
 			ls.setItem(id, qs('#' + id).value);
 		}
+
+		// Save the checkbox
+		ls.setItem("autogen", qs('#autogen').checked);
 	});
 
 }());
