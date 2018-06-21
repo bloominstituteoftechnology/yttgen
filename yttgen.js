@@ -81,7 +81,11 @@
 			filename = filename.replace(/[^-a-z0-9]/gi, '');
 			filename = filename.replace(/-+/g, '-');
 
-			qs('#filename').value = filename + '.png';
+			if (filename === '') {
+				qs('#filename').value = '';
+			} else {
+				qs('#filename').value = filename + '.png';
+			}
 		}
 	}
 
