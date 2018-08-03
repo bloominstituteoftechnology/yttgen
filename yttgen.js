@@ -70,9 +70,8 @@
 	 * Check to see if we need to update the autogen filename
 	 */
 	function autoGenFilename() {
-		if (qs('#autogen').checked) {
-			let filename = qs('#desc1').value;
 
+		function normalize(filename) {
 			// Normalize filename
 			filename = filename.toLowerCase();
 			filename = filename.trim();
@@ -80,6 +79,16 @@
 			filename = filename.replace(/\s/g, '-');
 			filename = filename.replace(/[^-a-z0-9]/gi, '');
 			filename = filename.replace(/-+/g, '-');
+
+			return filename;
+		}
+
+		if (qs('#autogen').checked) {
+			let desc1 = normalize(qs('#desc1').value);
+			let desc2 = normalize(qs('#desc2').value);
+
+			let filename = [desc1, desc2].filter(Boolean).join('-');
+
 
 			if (filename === '') {
 				qs('#filename').value = '';
@@ -186,7 +195,11 @@
 		}
 
 		// See if we have to update the filename
-		qs('#desc1').addEventListener('keyup', autoGenFilename);
+		for (let id of ["#desc1", "#desc2"]) {
+			const elem = qs(id);
+
+			elem.addEventListener('keyup', autoGenFilename);
+		}
 
 		// Add listener to select change
 		qs('#theme').addEventListener('change', drawImage);
