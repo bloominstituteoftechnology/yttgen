@@ -18,30 +18,37 @@
 
 	// Map image URLs to theme keys
 	const imgURL_theme = {
-		"img/lambda-yt-bg-black.jpg": "Black",
-		"img/lambda-yt-bg-teal.jpg": "Teal",
-		"img/lambda-yt-bg-red.jpg": "Red",
-		"img/lambda-yt-bg-white.jpg": "White",
+		"img/lambda-yt-bg-red.png": "Red",
+		"img/lambda-yt-bg-darkblue.png": "Dark Blue",
+		"img/lambda-yt-bg-blue.png": "Blue",
+		"img/lambda-yt-bg-lightblue.png": "Light Blue",
+		"img/lambda-yt-bg-gray.png": "Gray",
 	};
+
+	const DEFAULT_THEME = "Red";
 
 	// List of themes
 	const theme = {
-		"Black": {
-			"img": null,
-			"fgcolor": "white"
-		},
-		"Teal": {
-			"img": null,
-			"fgcolor": "white"
-		},
 		"Red": {
 			"img": null,
 			"fgcolor": "white"
 		},
-		"White": {
+		"Dark Blue": {
 			"img": null,
-			"fgcolor": "black"
-		}
+			"fgcolor": "white"
+		},
+		"Blue": {
+			"img": null,
+			"fgcolor": "white"
+		},
+		"Light Blue": {
+			"img": null,
+			"fgcolor": "white"
+		},
+		"Gray": {
+			"img": null,
+			"fgcolor": "white"
+		},
 	};
 
 	/**
@@ -226,9 +233,17 @@
 		const ls = window.localStorage;
 
   		for (let id of ["desc1", "desc2", "instname", "theme", "filename"]) {
-			const val = ls.getItem(id);
+			let val = ls.getItem(id);
 
 			if (val) {
+				// Handle the case where someone might have a discontinued theme
+				// in local storage
+				if (id == "theme") {
+					if (!(val in theme)) {
+						val = DEFAULT_THEME;
+					}
+				}
+
 				qs('#' + id).value = val;
 			}
 		}
