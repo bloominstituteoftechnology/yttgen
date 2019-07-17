@@ -9,6 +9,19 @@
 	</head>
 
 	<body>
+
+		<script type="text/javascript">
+			function updateSuggestedTitle() {
+				var line1 = document.getElementById('desc1');
+				var line2 = document.getElementById('desc2');
+				var instname = document.getElementById('instname');
+				var date = document.getElementById('date');
+
+				var outputField = document.getElementById('titlestring');
+				var outputString = line1.value + " - " + line2.value + " - " + instname.value + " - " + date.value
+				outputField.value = outputString
+			}
+		</script>
 		<div id="loading">
 			Loading...
 		</div>
@@ -16,10 +29,13 @@
 		<div id="mainpage" class="hidden">
 			<canvas id="canvas"></canvas>
 
-			<input class="blockinput" id="desc1" type="text" placeholder="Description Line 1">
-			<input class="blockinput" id="desc2" type="text" placeholder="Description Line 2">
-			<input class="blockinput" id="instname" type="text" placeholder="Instructor Name">
-			<input class="blockinput" id="date" type="text" placeholder="Date">
+			<input class="blockinput" id="desc1" type="text" placeholder="Description Line 1" oninput="updateSuggestedTitle()">
+			<input class="blockinput" id="desc2" type="text" placeholder="Description Line 2" oninput="updateSuggestedTitle()">
+			<input class="blockinput" id="instname" type="text" placeholder="Instructor Name" oninput="updateSuggestedTitle()">
+			<input class="blockinput" id="date" type="text" placeholder="Date" oninput="updateSuggestedTitle()">
+
+			<input class="blockinput" id="titlestring" type="text" disabled>
+
 
 			<select id="theme">
 				<option value="Red" selected="selected">Red</option>
