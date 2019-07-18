@@ -106,6 +106,31 @@
 	}
 
 	/**
+	 * Autogenerate the YouTube title
+	 * 
+	 * Credit: Michael Redig
+	 */
+	function autoGenTitle() {
+		const fields = [
+			qs('#desc1').value,
+			qs('#desc2').value,
+			qs('#instname').value,
+			qs('#date').value,
+		];
+
+		let outputFields = [];
+
+		for (let f of fields) {
+			if (f) {
+				outputFields.push(f)
+			}
+		}
+
+		qs('#titlestring').value = outputFields.join(" - ");
+	}
+
+
+	/**
 	 * Draw the specified image on the canvas
 	 */
 	function drawImage() {
@@ -199,6 +224,7 @@
 			const elem = qs(id);
 
 			elem.addEventListener('keyup', drawImage);
+			elem.addEventListener('keyup', autoGenTitle);
 		}
 
 		// See if we have to update the filename
@@ -256,6 +282,7 @@
 		qs('#date').value = dateStr;
 
 		autoGenFilename();
+		autoGenTitle();
 	}
 
 	/**
