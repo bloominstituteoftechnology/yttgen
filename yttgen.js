@@ -122,7 +122,7 @@
 
 		for (let f of fields) {
 			if (f) {
-				outputFields.push(f)
+				outputFields.push(f.trim());
 			}
 		}
 
