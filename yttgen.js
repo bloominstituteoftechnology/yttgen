@@ -121,8 +121,9 @@
 		let outputFields = [];
 
 		for (let f of fields) {
+			f = f.trim();
 			if (f) {
-				outputFields.push(f.trim());
+				outputFields.push(f);
 			}
 		}
 
