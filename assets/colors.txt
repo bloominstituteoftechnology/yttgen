@@ -1,0 +1,5 @@
+red bb1333
+gray 55506d
+blue 1a61b0
+lightblue 3ab5e5
+darkblue 0c3c78
