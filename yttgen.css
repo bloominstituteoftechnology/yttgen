@@ -1,5 +1,10 @@
+@font-face {
+	font-family: 'Titillium Web';
+	src: url('./fonts/TitilliumWeb-SemiBold.ttf');
+}
+
 body {
-	font-family: Helvetica,sans-serif;
+	font-family: 'Titillium Web',sans-serif;
 }
 
 .hidden {

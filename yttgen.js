@@ -193,7 +193,7 @@
 		const desc1 = qs('#desc1').value;
 		const desc2 = qs('#desc2').value;
 
-		ctx.font = 'bold 122px Helvetica,sans-serif';
+		ctx.font = "122px 'Titillium Web',sans-serif";
 
 		let desc1Y = desc2 === ''? SINGLE_LINE1_Y: DOUBLE_LINE1_Y;
 
@@ -206,7 +206,7 @@
 
 		const namedate = `${instname} \u2022 ${date}`;  // 2022 is a bullet
 
-		ctx.font = '82px Helvetica,sans-serif';
+		ctx.font = "82px 'Titillium Web',sans-serif";
 
 		ctx.fillText(namedate, canvas.width / 2, DATE_LINE_Y);
 	}
