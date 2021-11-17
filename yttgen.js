@@ -184,7 +184,6 @@
 		let icon_x = (WIDTH - icon_img.width) >> 1; // integer div 2
 		let icon_y = ICON_CENTER_Y - (icon_img.height >> 1); // integer div 2
 
-		// TODO: this is a hack to avoid showing the obsolete Lambda shield
 		ctx.drawImage(icon_img, icon_x, icon_y);
 
 		// Draw the description
