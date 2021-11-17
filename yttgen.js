@@ -38,8 +38,20 @@
 
 	// List of themes
 	const theme = {
+		"Orange": {
+			"bgcolor": "#ff4b00",
+			"fgcolor": "white"
+		},
+		"Ocean": {
+			"bgcolor": "#00808c",
+			"fgcolor": "white"
+		},
 		"Red": {
-			"bgcolor": "#bb1333",
+			"bgcolor": "#dc004b",
+			"fgcolor": "white"
+		},
+		"Boysenberry": {
+			"bgcolor": "#93005a",
 			"fgcolor": "white"
 		},
 		"Dark Blue": {
@@ -173,7 +185,7 @@
 		let icon_y = ICON_CENTER_Y - (icon_img.height >> 1); // integer div 2
 
 		// TODO: this is a hack to avoid showing the obsolete Lambda shield
-		// ctx.drawImage(icon_img, icon_x, icon_y);
+		ctx.drawImage(icon_img, icon_x, icon_y);
 
 		// Draw the description
 		ctx.fillStyle = fgcolor;
